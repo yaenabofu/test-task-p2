@@ -37,17 +37,17 @@ namespace api.Repositories.WorkerRepository
 
         public async Task<IEnumerable<Worker>> Get()
         {
-            return await _databaseContext.Workers.ToListAsync();
+            return await _databaseContext.Workers.Include(c => c.Specialties).Include(c => c.WorkShifts).ToListAsync();
         }
 
         public async Task<Worker> Get(int id)
         {
-            return await _databaseContext.Workers.FirstOrDefaultAsync(c => c.Id == id);
+            return await _databaseContext.Workers.Include(c => c.Specialties).Include(c => c.WorkShifts).FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<Worker> GetBySnils(string snils)
         {
-            return await _databaseContext.Workers.FirstOrDefaultAsync(c => c.Snils == snils);
+            return await _databaseContext.Workers.Include(c => c.Specialties).Include(c => c.WorkShifts).FirstOrDefaultAsync(c => c.Snils == snils);
         }
 
         public async Task<Worker> Update(Worker оbj)
