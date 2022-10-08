@@ -6,6 +6,10 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Repositories\WorkShiftRepository\" />
+    <Folder Include="Repositories\WorkerRepository\" />
+    <Folder Include="Repositories\SpecialtyRepository\" />
+    <Folder Include="Repositories\ProfessionRepository\" />
   </ItemGroup>
 
   <ItemGroup>
