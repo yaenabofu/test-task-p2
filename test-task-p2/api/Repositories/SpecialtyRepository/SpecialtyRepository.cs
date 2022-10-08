@@ -1,4 +1,6 @@
 ﻿using api.Models.DatabaseObjects;
+using api.Repositories.PaginationRepository;
+using api.Repositories.PaginationRepository.Parameters;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -35,7 +37,7 @@ namespace api.Repositories.SpecialtyRepository
             return false;
         }
 
-        public async Task<IEnumerable<Specialty>> Get()
+        public async Task<IEnumerable<Specialty>> GetAll()
         {
             return await _databaseContext.Specialties.ToListAsync();
         }
@@ -43,6 +45,12 @@ namespace api.Repositories.SpecialtyRepository
         public async Task<Specialty> Get(int id)
         {
             return await _databaseContext.Specialties.FirstOrDefaultAsync(c => c.Id == id);
+        }
+
+        public Task<PagedList<Specialty>> Get(PaginationParameters paginationParameters)
+        {
+            return Task.FromResult(PagedList<Specialty>
+                .ToPagedList(_databaseContext.Specialties, paginationParameters.PageNumber, paginationParameters.PageSize));
         }
 
         public async Task<Specialty> Update(Specialty оbj)

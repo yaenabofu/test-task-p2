@@ -1,6 +1,8 @@
 ﻿using api.Models.DatabaseObjects;
 using api.Repositories;
+using api.Repositories.PaginationRepository.Parameters;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace api.Controllers
@@ -15,13 +17,14 @@ namespace api.Controllers
             this.specialtyRepo = specialtyRepo;
         }
 
-        [HttpGet("Get")]
-        public async Task<IActionResult> Get()
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
         {
-            var specialties = await specialtyRepo.Get();
+            var specialties = await specialtyRepo.GetAll();
 
             return Ok(specialties);
         }
+
         [HttpGet("Get/{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -33,6 +36,23 @@ namespace api.Controllers
             }
 
             return NotFound();
+        }
+        [HttpGet("Get")]
+        public async Task<IActionResult> Get([FromQuery] PaginationParameters paginationParameters)
+        {
+            var specialties = await specialtyRepo.Get(paginationParameters);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(
+                new
+                {
+                    specialties.TotalCount,
+                    specialties.PageSize,
+                    specialties.CurrentPage,
+                    specialties.HasNext,
+                    specialties.HasPrevious
+                }));
+
+            return Ok(specialties);
         }
         [HttpPost("Create")]
         public async Task<IActionResult> Create([FromBody] Specialty specialty)

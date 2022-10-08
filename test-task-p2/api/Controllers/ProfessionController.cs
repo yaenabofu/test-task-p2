@@ -1,6 +1,8 @@
 ﻿using api.Models.DatabaseObjects;
 using api.Repositories;
+using api.Repositories.PaginationRepository.Parameters;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace api.Controllers
@@ -15,10 +17,10 @@ namespace api.Controllers
             this.professionRepo = professionRepo;
         }
 
-        [HttpGet("Get")]
-        public async Task<IActionResult> Get()
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
         {
-            var professions = await professionRepo.Get();
+            var professions = await professionRepo.GetAll();
 
             return Ok(professions);
         }
@@ -34,6 +36,25 @@ namespace api.Controllers
 
             return NotFound();
         }
+
+        [HttpGet("Get")]
+        public async Task<IActionResult> Get([FromQuery] PaginationParameters paginationParameters)
+        {
+            var professions = await professionRepo.Get(paginationParameters);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(
+                new
+                {
+                    professions.TotalCount,
+                    professions.PageSize,
+                    professions.CurrentPage,
+                    professions.HasNext,
+                    professions.HasPrevious
+                }));
+
+            return Ok(professions);
+        }
+
         [HttpPost("Create")]
         public async Task<IActionResult> Create([FromBody] Profession profession)
         {

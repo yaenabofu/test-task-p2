@@ -1,11 +1,15 @@
 ﻿using api.Models.DatabaseObjects;
+using api.Repositories.PaginationRepository.Parameters;
 using api.Repositories.ValidatorsRepository.SnilsValidator;
 using api.Repositories.WorkerRepository;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace api.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class WorkerController : Controller
     {
         private readonly SnilsValidator snilsValidator;
@@ -16,10 +20,10 @@ namespace api.Controllers
             this.snilsValidator = snilsValidator;
         }
 
-        [HttpGet("Get")]
-        public async Task<IActionResult> Get()
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
         {
-            var workers = await workerRepo.Get();
+            var workers = await workerRepo.GetAll();
 
             return Ok(workers);
         }
@@ -34,6 +38,23 @@ namespace api.Controllers
             }
 
             return NotFound();
+        }
+        [HttpGet("Get")]
+        public async Task<IActionResult> Get([FromQuery] PaginationParameters paginationParameters)
+        {
+            var workers = await workerRepo.Get(paginationParameters);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(
+                new
+                {
+                    workers.TotalCount,
+                    workers.PageSize,
+                    workers.CurrentPage,
+                    workers.HasNext,
+                    workers.HasPrevious
+                }));
+
+            return Ok(workers);
         }
         [HttpGet("GetBySnils/{snils}")]
         public async Task<IActionResult> GetBySnils(string snils)

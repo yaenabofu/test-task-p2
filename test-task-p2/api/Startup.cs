@@ -1,4 +1,11 @@
 using api.Models.DatabaseObjects;
+using api.Repositories;
+using api.Repositories.PaginationRepository;
+using api.Repositories.ProfessionRepository;
+using api.Repositories.SpecialtyRepository;
+using api.Repositories.ValidatorsRepository.SnilsValidator;
+using api.Repositories.WorkerRepository;
+using api.Repositories.WorkShiftRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,7 +34,18 @@ namespace api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
+
             services.AddControllers();
+            services.AddScoped<IRepository<Worker>, WorkerRepository>();
+            services.AddScoped<IRepository<WorkShift>, WorkShiftRepository>();
+            services.AddScoped<IRepository<Profession>, ProfessionRepository>();
+            services.AddScoped<IRepository<Specialty>, SpecialtyRepository>();
+            services.AddScoped<IRepository<Specialty>, SpecialtyRepository>();
+            services.AddSingleton<SnilsValidator>();
             services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 

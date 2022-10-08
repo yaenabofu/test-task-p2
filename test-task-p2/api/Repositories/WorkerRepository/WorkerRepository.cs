@@ -1,6 +1,9 @@
 ﻿using api.Models.DatabaseObjects;
+using api.Repositories.PaginationRepository;
+using api.Repositories.PaginationRepository.Parameters;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace api.Repositories.WorkerRepository
@@ -35,7 +38,7 @@ namespace api.Repositories.WorkerRepository
             return false;
         }
 
-        public async Task<IEnumerable<Worker>> Get()
+        public async Task<IEnumerable<Worker>> GetAll()
         {
             return await _databaseContext.Workers.Include(c => c.Specialties).Include(c => c.WorkShifts).ToListAsync();
         }
@@ -43,6 +46,12 @@ namespace api.Repositories.WorkerRepository
         public async Task<Worker> Get(int id)
         {
             return await _databaseContext.Workers.Include(c => c.Specialties).Include(c => c.WorkShifts).FirstOrDefaultAsync(c => c.Id == id);
+        }
+
+        public Task<PagedList<Worker>> Get(PaginationParameters paginationParameters)
+        {
+            return Task.FromResult(PagedList<Worker>
+                .ToPagedList(_databaseContext.Workers, paginationParameters.PageNumber, paginationParameters.PageSize));
         }
 
         public async Task<Worker> GetBySnils(string snils)

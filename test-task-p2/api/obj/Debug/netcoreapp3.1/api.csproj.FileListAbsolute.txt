@@ -60,3 +60,6 @@ D:\test-task-p2\test-task-p2\api\obj\Debug\netcoreapp3.1\api.csproj.CopyComplete
 D:\test-task-p2\test-task-p2\api\obj\Debug\netcoreapp3.1\api.dll
 D:\test-task-p2\test-task-p2\api\obj\Debug\netcoreapp3.1\api.pdb
 D:\test-task-p2\test-task-p2\api\obj\Debug\netcoreapp3.1\api.genruntimeconfig.cache
+D:\test-task-p2\test-task-p2\api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\test-task-p2\test-task-p2\api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\test-task-p2\test-task-p2\api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

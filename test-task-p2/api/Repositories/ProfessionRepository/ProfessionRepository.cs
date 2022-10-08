@@ -1,4 +1,6 @@
 ﻿using api.Models.DatabaseObjects;
+using api.Repositories.PaginationRepository;
+using api.Repositories.PaginationRepository.Parameters;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -35,7 +37,7 @@ namespace api.Repositories.ProfessionRepository
             return false;
         }
 
-        public async Task<IEnumerable<Profession>> Get()
+        public async Task<IEnumerable<Profession>> GetAll()
         {
             return await _databaseContext.Professions.Include(c => c.Specialties).ToListAsync();
         }
@@ -44,7 +46,11 @@ namespace api.Repositories.ProfessionRepository
         {
             return await _databaseContext.Professions.Include(c => c.Specialties).FirstOrDefaultAsync(c => c.Id == id);
         }
-
+        public Task<PagedList<Profession>> Get(PaginationParameters paginationParameters)
+        {
+            return Task.FromResult(PagedList<Profession>
+                .ToPagedList(_databaseContext.Professions, paginationParameters.PageNumber, paginationParameters.PageSize));
+        }
         public async Task<Profession> Update(Profession оbj)
         {
             _databaseContext.Entry(оbj).State = EntityState.Modified;
