@@ -1,4 +1,6 @@
-﻿namespace api.Repositories.PaginationRepository.Parameters
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace api.Repositories.PaginationRepository.Parameters
 {
     public class PaginationParameters
     {
@@ -6,6 +8,7 @@
 
         private int pageNumber;
         private int pageSize;
+        [Required]
         public int PageNumber
         {
             get { return pageNumber; }
@@ -21,6 +24,7 @@
                 }
             }
         }
+        [Required]
         public int PageSize
         {
             get
@@ -29,6 +33,11 @@
             }
             set
             {
+                if (value < 1)
+                {
+                    pageSize = 1;
+                }
+                else
                 if (value > MAX_ROWS_PER_PAGE)
                 {
                     pageSize = MAX_ROWS_PER_PAGE;

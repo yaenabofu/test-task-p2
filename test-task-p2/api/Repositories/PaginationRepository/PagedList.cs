@@ -65,14 +65,7 @@ namespace api.Repositories.PaginationRepository
             }
             set
             {
-                if (CurrentPage > 1)
-                {
-                    hasPrevious = true;
-                }
-                else
-                {
-                    hasPrevious = false;
-                }
+                hasPrevious = value;
             }
         }
         public bool HasNext
@@ -83,23 +76,34 @@ namespace api.Repositories.PaginationRepository
             }
             set
             {
-                if (CurrentPage < TotalPages)
-                {
-                    hasNext = true;
-                }
-                else
-                {
-                    hasNext = false;
-                }
+                hasNext = value;
             }
         }
 
-        public PagedList(List<T> items, int totalCount, int pageSize, int currentPageNumber)
+        public PagedList(List<T> items, int totalCount, int currentPageNumber, int pageSize)
         {
             TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
             TotalCount = totalCount;
             PageSize = pageSize;
             CurrentPage = currentPageNumber;
+
+            if (CurrentPage > 1)
+            {
+                HasPrevious = true;
+            }
+            else
+            {
+                HasPrevious = false;
+            }
+
+            if (CurrentPage < TotalPages)
+            {
+                HasNext = true;
+            }
+            else
+            {
+                HasNext = false;
+            }
 
             this.AddRange(items);
         }

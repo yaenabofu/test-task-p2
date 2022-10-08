@@ -63,3 +63,8 @@ D:\test-task-p2\test-task-p2\api\obj\Debug\netcoreapp3.1\api.genruntimeconfig.ca
 D:\test-task-p2\test-task-p2\api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 D:\test-task-p2\test-task-p2\api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\test-task-p2\test-task-p2\api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+D:\test-task-p2\test-task-p2\api\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\test-task-p2\test-task-p2\api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\test-task-p2\test-task-p2\api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\test-task-p2\test-task-p2\api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\test-task-p2\test-task-p2\api\obj\Debug\netcoreapp3.1\api.MvcApplicationPartsAssemblyInfo.cs

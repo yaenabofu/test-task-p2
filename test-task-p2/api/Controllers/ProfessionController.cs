@@ -1,8 +1,11 @@
 ﻿using api.Models.DatabaseObjects;
+using api.Models.Responses;
 using api.Repositories;
 using api.Repositories.PaginationRepository.Parameters;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace api.Controllers
@@ -40,6 +43,11 @@ namespace api.Controllers
         [HttpGet("Get")]
         public async Task<IActionResult> Get([FromQuery] PaginationParameters paginationParameters)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequestModelState();
+            }
+
             var professions = await professionRepo.Get(paginationParameters);
 
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(
@@ -78,6 +86,14 @@ namespace api.Controllers
             }
 
             return BadRequest();
+        }
+
+        private IActionResult BadRequestModelState()
+        {
+            IEnumerable<string> errorMessages = ModelState.Values
+                   .SelectMany(value => value.Errors.Select(c => c.ErrorMessage));
+
+            return BadRequest(new ErrorResponse(errorMessages));
         }
     }
 }
