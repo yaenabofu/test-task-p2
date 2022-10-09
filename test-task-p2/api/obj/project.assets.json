@@ -5685,11 +5685,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\test-task-p2\\test-task-p2\\api\\api.csproj",
+      "projectUniqueName": "D:\\Projects\\test-task-p2\\test-task-p2\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "D:\\test-task-p2\\test-task-p2\\api\\api.csproj",
+      "projectPath": "D:\\Projects\\test-task-p2\\test-task-p2\\api\\api.csproj",
       "packagesPath": "C:\\Users\\Anton\\.nuget\\packages\\",
-      "outputPath": "D:\\test-task-p2\\test-task-p2\\api\\obj\\",
+      "outputPath": "D:\\Projects\\test-task-p2\\test-task-p2\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Anton\\AppData\\Roaming\\NuGet\\NuGet.Config",

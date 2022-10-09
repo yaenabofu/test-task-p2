@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SAjx4ua5GpV90Y4znx30rNHe9JlWyVlU4iHRcNjQXWz0mTdxOdvETf+wesfYxM0ABMpL+y+57wvLqzWB/2bmDg==",
+  "dgSpecHash": "rbncBIeK7F/7hb0pjBesR8lE1fZFhnPA8HjeBjpI8PoY+dTu9kGOqYkSA8gQ+qXlJd4MfLpBZp2b8Lu2zTDV6g==",
   "success": true,
-  "projectFilePath": "D:\\test-task-p2\\test-task-p2\\api\\api.csproj",
+  "projectFilePath": "D:\\Projects\\test-task-p2\\test-task-p2\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Anton\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Anton\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.29\\microsoft.aspnetcore.jsonpatch.3.1.29.nupkg.sha512",

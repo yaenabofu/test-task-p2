@@ -13,7 +13,7 @@ namespace api.Models.DatabaseObjects
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Worker>().HasMany<WorkShift>().WithOne(x => x.Worker).HasForeignKey(x => x.WorkerId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+               .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Worker>().HasMany<Specialty>().WithOne(x => x.Worker).HasForeignKey(x => x.WorkerId);
             modelBuilder.Entity<Profession>().HasMany<Specialty>().WithOne(x => x.Profession).HasForeignKey(x => x.ProfessionId);
 
@@ -102,7 +102,7 @@ namespace api.Models.DatabaseObjects
                   Description = "Смена 1",
                   StartDate = DateTime.Now,
                   EndDate = DateTime.Now.AddHours(2),
-                  WorkerId = 2
+                  WorkerId = 1
               },
               new WorkShift {
                   Id = 2,
@@ -110,7 +110,7 @@ namespace api.Models.DatabaseObjects
                   Description = "Смена 2",
                   StartDate = DateTime.Now.AddHours(3),
                   EndDate = DateTime.Now.AddHours(5),
-                  WorkerId = 2
+                  WorkerId = 1
               },
               new WorkShift {
                   Id = 3,
@@ -134,7 +134,7 @@ namespace api.Models.DatabaseObjects
                   Description = "Смена 4",
                   StartDate = DateTime.Now,
                   EndDate = DateTime.Now.AddHours(2),
-                  WorkerId = 2
+                  WorkerId = 3
               },
               new WorkShift {
                   Id = 6,
@@ -181,8 +181,8 @@ namespace api.Models.DatabaseObjects
            });
         }
         public DbSet<Profession> Professions { get; set; }
-        public DbSet<Specialty> Specialties { get; set; }
-        public DbSet<WorkShift> WorkShifts { get; set; }
         public DbSet<Worker> Workers { get; set; }
+        public DbSet<WorkShift> WorkShifts { get; set; }
+        public DbSet<Specialty> Specialties { get; set; }
     }
 }

@@ -183,54 +183,54 @@ namespace api.Migrations
                         {
                             Id = 1,
                             Description = "Смена 1",
-                            EndDate = new DateTime(2022, 10, 8, 19, 33, 54, 747, DateTimeKind.Local).AddTicks(7689),
+                            EndDate = new DateTime(2022, 10, 9, 22, 43, 11, 744, DateTimeKind.Local).AddTicks(2743),
                             Name = "Смена 1",
-                            StartDate = new DateTime(2022, 10, 8, 17, 33, 54, 747, DateTimeKind.Local).AddTicks(7359),
-                            WorkerId = 2
+                            StartDate = new DateTime(2022, 10, 9, 20, 43, 11, 744, DateTimeKind.Local).AddTicks(2393),
+                            WorkerId = 1
                         },
                         new
                         {
                             Id = 2,
                             Description = "Смена 2",
-                            EndDate = new DateTime(2022, 10, 8, 22, 33, 54, 748, DateTimeKind.Local).AddTicks(6138),
+                            EndDate = new DateTime(2022, 10, 10, 1, 43, 11, 744, DateTimeKind.Local).AddTicks(7722),
                             Name = "Смена 2",
-                            StartDate = new DateTime(2022, 10, 8, 20, 33, 54, 748, DateTimeKind.Local).AddTicks(6099),
-                            WorkerId = 2
+                            StartDate = new DateTime(2022, 10, 9, 23, 43, 11, 744, DateTimeKind.Local).AddTicks(7692),
+                            WorkerId = 1
                         },
                         new
                         {
                             Id = 3,
                             Description = "Смена 3",
-                            EndDate = new DateTime(2022, 10, 8, 19, 33, 54, 748, DateTimeKind.Local).AddTicks(6163),
+                            EndDate = new DateTime(2022, 10, 9, 22, 43, 11, 744, DateTimeKind.Local).AddTicks(7746),
                             Name = "Смена 3",
-                            StartDate = new DateTime(2022, 10, 8, 17, 33, 54, 748, DateTimeKind.Local).AddTicks(6161),
+                            StartDate = new DateTime(2022, 10, 9, 20, 43, 11, 744, DateTimeKind.Local).AddTicks(7744),
                             WorkerId = 2
                         },
                         new
                         {
                             Id = 4,
                             Description = "Смена 3",
-                            EndDate = new DateTime(2022, 10, 8, 22, 33, 54, 748, DateTimeKind.Local).AddTicks(6167),
+                            EndDate = new DateTime(2022, 10, 10, 1, 43, 11, 744, DateTimeKind.Local).AddTicks(7749),
                             Name = "Смена 3",
-                            StartDate = new DateTime(2022, 10, 8, 20, 33, 54, 748, DateTimeKind.Local).AddTicks(6165),
+                            StartDate = new DateTime(2022, 10, 9, 23, 43, 11, 744, DateTimeKind.Local).AddTicks(7748),
                             WorkerId = 2
                         },
                         new
                         {
                             Id = 5,
                             Description = "Смена 4",
-                            EndDate = new DateTime(2022, 10, 8, 19, 33, 54, 748, DateTimeKind.Local).AddTicks(6172),
+                            EndDate = new DateTime(2022, 10, 9, 22, 43, 11, 744, DateTimeKind.Local).AddTicks(7753),
                             Name = "Смена 4",
-                            StartDate = new DateTime(2022, 10, 8, 17, 33, 54, 748, DateTimeKind.Local).AddTicks(6171),
-                            WorkerId = 2
+                            StartDate = new DateTime(2022, 10, 9, 20, 43, 11, 744, DateTimeKind.Local).AddTicks(7752),
+                            WorkerId = 3
                         },
                         new
                         {
                             Id = 6,
                             Description = "Смена 5",
-                            EndDate = new DateTime(2022, 10, 8, 22, 33, 54, 748, DateTimeKind.Local).AddTicks(6175),
+                            EndDate = new DateTime(2022, 10, 10, 1, 43, 11, 744, DateTimeKind.Local).AddTicks(7757),
                             Name = "Смена 5",
-                            StartDate = new DateTime(2022, 10, 8, 20, 33, 54, 748, DateTimeKind.Local).AddTicks(6174),
+                            StartDate = new DateTime(2022, 10, 9, 23, 43, 11, 744, DateTimeKind.Local).AddTicks(7755),
                             WorkerId = 3
                         });
                 });
@@ -265,7 +265,7 @@ namespace api.Migrations
                         new
                         {
                             Id = 1,
-                            Birthday = new DateTime(2022, 10, 8, 17, 33, 54, 746, DateTimeKind.Local).AddTicks(3355),
+                            Birthday = new DateTime(2022, 10, 9, 20, 43, 11, 742, DateTimeKind.Local).AddTicks(4831),
                             Name = "Иван",
                             Snils = "snils1",
                             Surname = "Иванов",
@@ -274,7 +274,7 @@ namespace api.Migrations
                         new
                         {
                             Id = 2,
-                            Birthday = new DateTime(2022, 10, 8, 17, 33, 54, 747, DateTimeKind.Local).AddTicks(5672),
+                            Birthday = new DateTime(2022, 10, 9, 20, 43, 11, 743, DateTimeKind.Local).AddTicks(9724),
                             Name = "Name",
                             Snils = "snils1",
                             Surname = "Surname",
@@ -283,7 +283,7 @@ namespace api.Migrations
                         new
                         {
                             Id = 3,
-                            Birthday = new DateTime(2022, 10, 8, 17, 33, 54, 747, DateTimeKind.Local).AddTicks(5703),
+                            Birthday = new DateTime(2022, 10, 9, 20, 43, 11, 743, DateTimeKind.Local).AddTicks(9767),
                             Name = "John",
                             Snils = "snils1",
                             Surname = "Doe",
@@ -322,7 +322,8 @@ namespace api.Migrations
                 {
                     b.HasOne("api.Models.DatabaseObjects.Worker", "Worker")
                         .WithMany()
-                        .HasForeignKey("WorkerId");
+                        .HasForeignKey("WorkerId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("api.Models.DatabaseObjects.Worker", null)
                         .WithMany("WorkShifts")

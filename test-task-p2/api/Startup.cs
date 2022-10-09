@@ -50,7 +50,7 @@ namespace api
             });
 
             services.AddControllers();
-            services.AddScoped<IRepository<Worker>, WorkerRepository>();
+            services.AddScoped<IWorker, WorkerRepository>();
             services.AddScoped<IRepository<WorkShift>, WorkShiftRepository>();
             services.AddScoped<IRepository<Profession>, ProfessionRepository>();
             services.AddScoped<IRepository<Specialty>, SpecialtyRepository>();

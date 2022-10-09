@@ -99,7 +99,7 @@ namespace api.Migrations
                         column: x => x.WorkerId,
                         principalTable: "Workers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_WorkShifts_Workers_WorkerId1",
                         column: x => x.WorkerId1,
@@ -126,9 +126,9 @@ namespace api.Migrations
                 columns: new[] { "Id", "Birthday", "Name", "Snils", "Surname", "Thirdname" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 10, 8, 17, 33, 54, 746, DateTimeKind.Local).AddTicks(3355), "Иван", "snils1", "Иванов", "Иванович" },
-                    { 2, new DateTime(2022, 10, 8, 17, 33, 54, 747, DateTimeKind.Local).AddTicks(5672), "Name", "snils1", "Surname", "Thirdname" },
-                    { 3, new DateTime(2022, 10, 8, 17, 33, 54, 747, DateTimeKind.Local).AddTicks(5703), "John", "snils1", "Doe", "Bismark" }
+                    { 1, new DateTime(2022, 10, 9, 20, 43, 11, 742, DateTimeKind.Local).AddTicks(4831), "Иван", "snils1", "Иванов", "Иванович" },
+                    { 2, new DateTime(2022, 10, 9, 20, 43, 11, 743, DateTimeKind.Local).AddTicks(9724), "Name", "snils1", "Surname", "Thirdname" },
+                    { 3, new DateTime(2022, 10, 9, 20, 43, 11, 743, DateTimeKind.Local).AddTicks(9767), "John", "snils1", "Doe", "Bismark" }
                 });
 
             migrationBuilder.InsertData(
@@ -149,12 +149,12 @@ namespace api.Migrations
                 columns: new[] { "Id", "Description", "EndDate", "Name", "StartDate", "WorkerId", "WorkerId1" },
                 values: new object[,]
                 {
-                    { 1, "Смена 1", new DateTime(2022, 10, 8, 19, 33, 54, 747, DateTimeKind.Local).AddTicks(7689), "Смена 1", new DateTime(2022, 10, 8, 17, 33, 54, 747, DateTimeKind.Local).AddTicks(7359), 2, null },
-                    { 2, "Смена 2", new DateTime(2022, 10, 8, 22, 33, 54, 748, DateTimeKind.Local).AddTicks(6138), "Смена 2", new DateTime(2022, 10, 8, 20, 33, 54, 748, DateTimeKind.Local).AddTicks(6099), 2, null },
-                    { 3, "Смена 3", new DateTime(2022, 10, 8, 19, 33, 54, 748, DateTimeKind.Local).AddTicks(6163), "Смена 3", new DateTime(2022, 10, 8, 17, 33, 54, 748, DateTimeKind.Local).AddTicks(6161), 2, null },
-                    { 4, "Смена 3", new DateTime(2022, 10, 8, 22, 33, 54, 748, DateTimeKind.Local).AddTicks(6167), "Смена 3", new DateTime(2022, 10, 8, 20, 33, 54, 748, DateTimeKind.Local).AddTicks(6165), 2, null },
-                    { 5, "Смена 4", new DateTime(2022, 10, 8, 19, 33, 54, 748, DateTimeKind.Local).AddTicks(6172), "Смена 4", new DateTime(2022, 10, 8, 17, 33, 54, 748, DateTimeKind.Local).AddTicks(6171), 2, null },
-                    { 6, "Смена 5", new DateTime(2022, 10, 8, 22, 33, 54, 748, DateTimeKind.Local).AddTicks(6175), "Смена 5", new DateTime(2022, 10, 8, 20, 33, 54, 748, DateTimeKind.Local).AddTicks(6174), 3, null }
+                    { 1, "Смена 1", new DateTime(2022, 10, 9, 22, 43, 11, 744, DateTimeKind.Local).AddTicks(2743), "Смена 1", new DateTime(2022, 10, 9, 20, 43, 11, 744, DateTimeKind.Local).AddTicks(2393), 1, null },
+                    { 2, "Смена 2", new DateTime(2022, 10, 10, 1, 43, 11, 744, DateTimeKind.Local).AddTicks(7722), "Смена 2", new DateTime(2022, 10, 9, 23, 43, 11, 744, DateTimeKind.Local).AddTicks(7692), 1, null },
+                    { 3, "Смена 3", new DateTime(2022, 10, 9, 22, 43, 11, 744, DateTimeKind.Local).AddTicks(7746), "Смена 3", new DateTime(2022, 10, 9, 20, 43, 11, 744, DateTimeKind.Local).AddTicks(7744), 2, null },
+                    { 4, "Смена 3", new DateTime(2022, 10, 10, 1, 43, 11, 744, DateTimeKind.Local).AddTicks(7749), "Смена 3", new DateTime(2022, 10, 9, 23, 43, 11, 744, DateTimeKind.Local).AddTicks(7748), 2, null },
+                    { 5, "Смена 4", new DateTime(2022, 10, 9, 22, 43, 11, 744, DateTimeKind.Local).AddTicks(7753), "Смена 4", new DateTime(2022, 10, 9, 20, 43, 11, 744, DateTimeKind.Local).AddTicks(7752), 3, null },
+                    { 6, "Смена 5", new DateTime(2022, 10, 10, 1, 43, 11, 744, DateTimeKind.Local).AddTicks(7757), "Смена 5", new DateTime(2022, 10, 9, 23, 43, 11, 744, DateTimeKind.Local).AddTicks(7755), 3, null }
                 });
 
             migrationBuilder.CreateIndex(
